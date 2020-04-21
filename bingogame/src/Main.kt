@@ -2,17 +2,19 @@
 fun main(){
 
     val numberOfPlayers : Int = readLine()!!.toInt()
-    val validTableNumbers : IntArray = IntArray(5)
+    val validTableNumbers = arrayOf<IntArray>()
+
 
     for (i in 1 until 5){
-        val split = readLine()!!.split(" ")
+        val tableRow = readLine()!!.split(" ").map(String::toInt)
+        validTableNumbers[i] = tableRow.toIntArray()
     }
 
     val game = Game(numberOfPlayers, validTableNumbers)
 
     while(game.proceed()){
-        val (playerNumber, playerSelection) = readLine()!!.split(" ")
-        game.play(playerNumber.toInt(), playerSelection.toInt())
+        val (playerNumber, playerSelection) = readLine()!!.split(" ").map(String::toInt)
+        game.play(playerNumber, playerSelection)
     }
 
 }

@@ -1,13 +1,15 @@
-class Game(numberOfPlayers: Int, validTableNumbers: IntArray) {
+class Game(numberOfPlayers: Int, validTableNumbers: Array<IntArray>) {
 
-    private val players: Map<Int, Player> = emptyMap()
+    private val players = mutableMapOf<Int, Player>()
     private var isDone = false
     private var winner: Player? = null
     private var lastPlayed: Int = 0
 
     init {
         for (i in 1 until numberOfPlayers) {
-
+            val table = Table(validTableNumbers)
+            table.shuffle()
+            players[i] = Player(i, table)
         }
     }
 

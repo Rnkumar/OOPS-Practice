@@ -1,6 +1,5 @@
-class Table {
-    // val table = Array<Cell>(5, Cell(1))
-    var count : Int = 0
+class Table(val table: Array<IntArray>) {
+    var count: Int = 0
 
     init {
 
@@ -10,7 +9,11 @@ class Table {
         return count == 5
     }
 
-    fun validate(){
+    fun validate() {
+
+    }
+
+    fun shuffle() {
 
     }
 }
