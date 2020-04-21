@@ -1,6 +1,10 @@
-class Player(private var number: Int, private val table: Table) {
+class Player(var number: Int, private val table: Table) {
 
-    fun strike(playerSelection: Int): Boolean {
-        return table.strike(playerSelection)
+    fun strike(playerSelection: Int) {
+        table.strike(playerSelection)
+    }
+
+    fun didWin(): Boolean {
+        return table.validate()
     }
 }

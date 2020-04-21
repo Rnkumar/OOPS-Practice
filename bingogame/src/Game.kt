@@ -1,4 +1,4 @@
-class Game(numberOfPlayers: Int, validTableNumbers: Array<IntArray>) {
+class Game(numberOfPlayers: Int, validTableNumbers: MutableList<Int>) {
 
     private val players = mutableMapOf<Int, Player>()
     private var isDone = false
@@ -7,8 +7,7 @@ class Game(numberOfPlayers: Int, validTableNumbers: Array<IntArray>) {
 
     init {
         for (i in 1 until numberOfPlayers) {
-            val table = Table(validTableNumbers)
-            table.shuffle()
+            val table = Table(validTableNumbers, shuffle = true)
             players[i] = Player(i, table)
         }
     }
@@ -17,16 +16,20 @@ class Game(numberOfPlayers: Int, validTableNumbers: Array<IntArray>) {
         return !isDone
     }
 
+    fun getWinner(): Int {
+        return winner!!.number
+    }
+
     fun play(playerNumber: Int, playerSelection: Int) {
         if (playerNumber != lastPlayed + 1) {
-            print("Player {lastPlayed+1} has not played yet")
+            print("Player ${lastPlayed+1} has not played yet")
             return;
         }
         lastPlayed = playerNumber
         for (playerEntry in players.entries) {
             val player = playerEntry.value
-            val didWin = player.strike(playerSelection)
-            if (didWin) {
+            player.strike(playerSelection)
+            if (player.didWin()) {
                 winner = player
                 isDone = true
             }
