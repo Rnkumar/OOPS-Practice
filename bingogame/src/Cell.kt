@@ -6,10 +6,6 @@ class Cell(val number: Int) {
         return "$number $striked"
     }
 
-    fun isStriked(): Boolean {
-        return striked
-    }
-
     fun strike() {
         striked = true
     }

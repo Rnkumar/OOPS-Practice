@@ -1,9 +1,9 @@
 class Game(numberOfPlayers: Int, validTableNumbers: MutableList<Int>) {
 
     private val players = mutableMapOf<Int, Player>()
-    private var isDone = false
+    private var isOver = false
     private var winner: Player? = null
-    private var lastPlayed: Int = 0
+    private var recentPlayerNumber: Int = 0
 
     init {
         for (i in 1 until numberOfPlayers) {
@@ -13,7 +13,7 @@ class Game(numberOfPlayers: Int, validTableNumbers: MutableList<Int>) {
     }
 
     fun proceed(): Boolean {
-        return !isDone
+        return !isOver
     }
 
     fun getWinner(): Int {
@@ -21,17 +21,17 @@ class Game(numberOfPlayers: Int, validTableNumbers: MutableList<Int>) {
     }
 
     fun play(playerNumber: Int, playerSelection: Int) {
-        if (playerNumber != lastPlayed + 1) {
-            print("Player ${lastPlayed+1} has not played yet")
+        if (playerNumber != recentPlayerNumber + 1) {
+            print("Player ${recentPlayerNumber+1} has not played yet")
             return;
         }
-        lastPlayed = playerNumber
+        recentPlayerNumber = playerNumber
         for (playerEntry in players.entries) {
             val player = playerEntry.value
             player.strike(playerSelection)
             if (player.didWin()) {
                 winner = player
-                isDone = true
+                isOver = true
             }
         }
     }

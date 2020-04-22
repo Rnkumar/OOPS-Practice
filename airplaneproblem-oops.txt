@@ -1,0 +1,12 @@
+A scenario was given and we were asked to code. Time limit was one and half an hour.
+
+A seating arrangement was to be designed for airplane management system which had an arrangement like [][]-[][][][]-[][] ( Pass way after the second and sixth seat ). It had three rows of such an arrangement.
+
+A group can have members ranging one to four and no person in the group must be booked with a seat alone.
+
+Write a code to allocate seats in such a manner that if the number of seats to be booked was
+
+Four : Together in the middle positions or allocated in pairs .
+Three : Only in the middle positions of the seating arrangement.
+Two : Only in pairs in the available location.
+One : If any unfilled position is available or in a position in sequence which is empty.
